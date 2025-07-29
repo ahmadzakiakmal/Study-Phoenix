@@ -18,6 +18,8 @@ defmodule TestappWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    get "/products", ProductController, :index
+    get "/todos", TodoController, :index
   end
 
   # Other scopes may use custom stacks.
