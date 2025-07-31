@@ -49,13 +49,13 @@ defmodule TestappWeb.Endpoint do
   plug Plug.MethodOverride
   plug Plug.Head
   plug Plug.Session, @session_options
-  plug :secret_plug, code: "secretparam1", exp: "01-01-2026"
+  plug :secret_plug, code: "secretparam1"
   plug TestappWeb.Router
 
   @doc """
   this plug is used to check secret access via url params (yes, very secure)
   """
-  def secret_plug(%Plug.Conn{:params => %{"secret" => opts[:code]}} = conn, opts) do
+  def secret_plug(%Plug.Conn{:params => %{"secret" => opts}} = conn, opts) do
     assign(conn, :secret_access, true)
   end
 
